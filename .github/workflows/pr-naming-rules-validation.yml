@@ -1,0 +1,23 @@
+name: Pull Request Naming Rules Validation
+description: Validate pull request title, branch origin name and commit messages based on naming rules.
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  call-pr-naming-rules-title-validation:
+    uses: talent-solutions-somospragma/pragma-workflow-pr-rules/.github/workflows/pr-naming-rules-title-validation.yml@main
+    secrets: inherit
+
+  call-pr-naming-rules-branch-validation:
+    if: github.event.pull_request.base.ref == 'main'
+    uses: talent-solutions-somospragma/pragma-workflow-pr-rules/.github/workflows/pr-naming-rules-branch-validation.yml@main
+    with:
+      allowed-branches: 'feature'
+    secrets: inherit
+
+  call-pr-naming-rules-commit-messages-validation:
+    uses: talent-solutions-somospragma/pragma-workflow-pr-rules/.github/workflows/pr-naming-rules-commit-messages-validation.yml@main
+    secrets: inherit

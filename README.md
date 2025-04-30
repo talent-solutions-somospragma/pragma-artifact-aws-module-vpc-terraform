@@ -1,0 +1,1 @@
+# pragma-artifact-aws-module-template-terraform
